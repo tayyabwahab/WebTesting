@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+                .slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .slide {
+            text-align: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .learn-more-btn {
+            background-color: #0073b1;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .info-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 100vmin; /* Adjust the size of the square */
+            height: 40vmin;
+            display: flex;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Adjust the shadow as needed */
+        }
+
+        .info-text {
+            width: 50%;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        .info-image {
+            width: 50%;
+            overflow: hidden;
+        }
+
+        .info-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center; /* Center the content within the container */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    padding: 10px 40px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+nav {
+    margin: 0 auto; /* Center the nav element */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-size: 17px;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the items in the navigation */
+}
+
+nav li {
+    margin-right: 80px;
+}
+
+
+
+nav a {
+    text-decoration: none;
+    color: grey;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: black;
+}
+
+img {
+    height: 70px;
+}
+
+.profile-logo {
+    height: 20px;
+}
+
+        .slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .slick-next {
+            font-size: 24px;
+            color: #0073b1;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .slick-prev {
+            left: 0;
+        }
+
+        .slick-next {
+            right: 0;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <title>Your Fitness App</title>
+
+</head>
+<body>
+    <div class="container">
+    <header>
+        <div class="logo">Your Logo</div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/how_to_use">How to Use</a></li>
+                <li><a href="#">Select Exercise</a></li>
+                <li><a href="#">Feedback</a></li>
+            </ul>
+        </nav>
+        <div class="profile">User Profile</div>
+    </header>
+
+    <div class="slider">
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <img src="image1.jpg" alt="Image 1">
+                <h3>Text 1</h3>
+                <p>Description 1</p>
+                <a href="#" class="learn-more-btn">Learn more</a>
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="info-text">
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, excepturi doloremque eligendi odit maxime beatae quibusdam sapiente alias, quidem, eius velit accusantium dignissimos. Vero a, consectetur saepe voluptatem quas cum?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt aspernatur nihil amet ex voluptates itaque nobis laborum consequuntur aliquid cupiditate inventore perspiciatis numquam beatae, totam repudiandae officia commodi iusto a.</p>
+            
+        </div>
+        <div class="info-image">
+            <img src="fullsize-image.jpg" alt="Full-size Image">
+        </div>
+    </div>
+</div>
+<!-- Your JavaScript -->
+
+<script>
+    $(document).ready(function(){
+        // Initialize the image slider
+        $('.slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: false, // Disable automatic sliding
+            dots: true,
+            centerMode: true,
+            focusOnSelect: true,
+            prevArrow: '<button type="button" class="slick-prev">&#8592; Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next &#8594;</button>'
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

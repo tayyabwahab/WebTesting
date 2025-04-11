@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body.loading {
+        visibility: hidden;
+      }
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+      }
+      .container {
+        position: relative; /* Add this line */
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center; /* Center the content within the container */
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: white;
+        padding: 10px 40px;
+        color: black;
+        border: 1px solid black;
+        border-radius: 7px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      nav {
+        margin: 0 auto; /* Center the nav element */
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        font-size: 17px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center; 
+        width: 100%;
+      }
+
+      nav li {
+        margin-right: 80px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: grey;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: black;
+      }
+
+      img {
+        height: 70px;
+      }
+
+      .profile-logo {
+        height: 20px;
+      }
+
+      .slider {
+        width: 85%;
+        margin: 20px auto; /* Center the slider */
+        overflow: hidden; /* Hide overflowing content */
+      }
+
+      .slide {
+        text-align: center;
+      }
+
+      .slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      
+
+      .content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .learn-more-btn {
+        background-color: #ffffff;
+        color: grey;
+        border: 1px solid grey;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-top: 0px; 
+
+      }
+      .disc, .learn-more-btn {
+         display: inline-block;
+         vertical-align: middle; /* Ensures they align on the same baseline */
+}
+
+
+
+      .learn-more-btn:hover {
+        background-color: #f2f2f2;
+        border-color: grey;
+        color: grey;
+      }
+
+      .slick-prev,
+      .slick-next {
+        font-size: 24px;
+        color: #0073b1;
+        cursor: pointer;
+      }
+
+      .slick-prev:hover,
+      .slick-next:hover {
+        color: #004477;
+      }
+      .content h3 {
+        color: #8c8c8c;
+        font-size: 25px;
+      }
+
+      h3 {
+        color: #8c8c8c;
+        font-size: 25px;
+        text-align: left; 
+      }
+      .disc {
+        font-size: 12px;
+        color: grey;
+        text-align: left;
+        min-height: 45px;
+      }
+      .info-container {
+        position: relative;
+        margin: 20px auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        display: flex; /* Use flexbox for better alignment */
+        overflow: hidden;
+        height: 280px; 
+        border: 2px solid black;
+        border-radius: 5px;
+      }
+
+  
+
+      .info-text {
+        flex: 1;
+        padding: 20px;
+        text-align: justify;
+      }
+
+      .info-text h2 {
+        font-size: 32px; /* Set the default font size for h2 */
+      }
+
+      .info-text {
+        flex: 1;
+        padding: 20px;
+        text-align: left;
+        text-align: justify;
+        font-size: 20px;
+        overflow-y: auto;
+         max-height: 100%;
+      }
+    .info-text::-webkit-scrollbar {
+        width: 8px;
+      }
+      .info-text::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+          border-radius: 10px;
+      }
+
+      .info-image {
+    flex: 1;
+    overflow: hidden;
+}
+
+
+      .info-image img {
+    height: 100%; /* Set the height to 100% of the container */
+    width: auto;  /* Set the width to auto to maintain aspect ratio */
+    object-fit: cover; /* Ensure that the image covers the area */
+}
+      .slick-prev,
+      .slick-next {
+        font-size: 24px;
+        color: #0073b1;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        cursor: pointer;
+      }
+
+      .slick-prev {
+        left: 10px;
+      }
+
+      .slick-next {
+        right: 10px;
+      }
+
+      .slick-dots {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .slick-dots span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: #bbb;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .slick-dots .slick-active {
+        color: #e6e6e6;
+      }
+
+      .dot-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .dot {
+        display: inline-block;
+        width: 15px; /* Adjust the width to your desired size */
+        height: 15px; /* Adjust the height to your desired size */
+        background-color: #f2f2f2;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+      .dot-active {
+        background-color: #d7d7d7;
+      }
+      nav li.home-link {
+        align-items: left;
+      }
+      .slider-navigation {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Center vertically */
+        padding: 0 20px;
+        width: 90%;
+      }
+
+      .slider-navigation button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        margin-top: -300px;
+        color: black;
+        font-size: 40px;
+      }
+
+      .slider-navigation button.prev {
+        margin-left: 0;
+      }
+
+      .slider-navigation button.next {
+        margin-right: 0;
+      }
+
+      @media screen and (max-width: 900px) {
+        .dot {
+          width: 14px;
+          height: 14px;
+        }
+        .learn-more-btn {
+          font-size: 12px;
+        }
+        .slider {
+          width: 80%; /* Make the slider full-width on smaller screens */
+        }
+        .content h3 {
+          font-size: 13px; /* Adjust font size for smaller screens */
+        }
+        .disc {
+          font-size: 10px;
+        }
+        nav li {
+          margin: 0;
+          margin-right: 20px;
+          font-size: 14px;
+        }
+
+        nav {
+          overflow: auto;
+        }
+
+        nav a {
+          margin: 5px;
+        }
+
+        nav.show-menu li {
+          display: block;
+        }
+        .info-container {
+          flex-direction: row; /* Stack items vertically on smaller screens */
+          width: 80%; /* Make the container full-width on smaller screens */
+        }
+
+        .info-text h2 {
+          font-size: 24px; /* Adjust h2 font size for smaller screens */
+        }
+
+        .info-text p {
+          font-size: 20px;
+          text-align: left;
+        }
+    
+        .slider-navigation button {
+          display: block;
+          margin-top: -500px;
+          padding: 5px;
+        }
+        .dot.active {
+          background-color: yellow !important; /* Or any other desired color */
+          /* Other styles */
+        }
+
+        .info-text {
+          text-align: left;
+        }
+      }
+      @media screen and (max-width: 100px) {
+        .slider-navigation button {
+          margin-top: -250px;
+        }
+      }
+    </style>
+    <head>
+      <meta charset="UTF-8" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha256-QRERsJdf1p08zKl91foxx/+G/J9Fb7ilhKAlcMU9BfE="
+        crossorigin="anonymous"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+      />
+    </head>
+
+    <title>Your Fitness App</title>
+  </head>
+  <body class="loading">
+    <div class="container">
+      <header>
+        <div class="logo">
+          <img
+            src="https://cdn.pixabay.com/photo/2022/05/21/21/33/vitruvian-man-7212326_1280.png"
+            alt="Your Logo"
+          />
+        </div>
+        <nav>
+          <ul>
+            <li class="home-link"><a href="/home">Home</a></li>
+            <li><a href="/how_to_use">How to Use</a></li>
+            <li><a href="/excercise">Select Exercise</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+          </ul>
+        </nav>
+        <img
+          class="profile-logo"
+          src="images/user (1).png"
+          alt="Profile Logo"
+        />
+      </header>
+
+      <div class="slider">
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/fortune-vieyra-jD4MtXnsJ6w-unsplash.jpg"
+              alt="Image 1"
+            />
+            <!-- Change the src attribute above to the URL of your first image -->
+            <h3>Real-Time Feedback</h3>
+            <p class="disc">
+              Posture improvement through real-time bio-feedback overlay
+            </p>
+            <a href="#" class="learn-more-btn" data-index="2">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/james-barr-uNyv2CdcdSY-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Recommendations</h3>
+            <p class="disc">
+              Using AI technology, geobalance suggests improvements through a
+              livefeedback interface.
+            </p>
+            <a href="#" class="learn-more-btn" data-index="3">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/james-barr-ULqD07i0l7s-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Video-on Demand</h3>
+            <p class="disc">
+              Users can review their previous workouts and understand how well
+              they have performed.
+            </p>
+            <a href="#" class="learn-more-btn" data-index="4">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/connor-bowden-KgWaohVS-mc-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Automated Reports</h3>
+            <p class="disc">Geobalance reports</p>
+            <a href="#" class="learn-more-btn" data-index="5">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/tim-foster-Odhl-kitI2c-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Regulation Compliant</h3>
+            <p class="disc">
+              Geobalance software is built to comply with federal and local
+              regulations
+            </p>
+            <a href="#" class="learn-more-btn" data-index="6">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              clas="imagess"
+              src="images/fortune-vieyra-jD4MtXnsJ6w-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Gamification</h3>
+            <p class="disc">
+              Improved exercise experience by increasing enhancement through the
+              application of game elements.
+            </p>
+            <a href="#" class="learn-more-btn" data-index="7">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/james-barr-uNyv2CdcdSY-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Web 4.0 Ready</h3>
+            <p class="disc">
+              Geobalance can be further expanded through inclusion of virtual
+              worlds and avatars and share with others
+            </p>
+            <a href="#" class="learn-more-btn" data-index="8">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/james-barr-ULqD07i0l7s-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Development</h3>
+            <p class="disc">
+              Robotics and AI Diagnostics Recommendations for Medical
+              Intervention
+            </p>
+            <a href="#" class="learn-more-btn" data-index="9">Learn More</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="content">
+            <img
+              class="imagess"
+              src="images/james-barr-uNyv2CdcdSY-unsplash.jpg"
+              alt="Image 1"
+            />
+            <h3>Motion Capture</h3>
+            <p class="disc">
+              Through advanced motion-capture technology, geobalance records
+              user movements.
+            </p>
+            <a href="#" class="learn-more-btn" data-index="1">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-navigation">
+        <button class="dot" onclick="moveSlide(-1)">❮</button>
+        <button class="dot" onclick="moveSlide(1)">❯</button>
+      </div>
+
+      <div class="dot-container" id="dotContainer"></div>
+
+      <div class="info-container">
+        <div class="info-image">
+          <img
+            src="images/victor-freitas-WvDYdXDzkhs-unsplash.jpg"
+            alt="Full-size Image"
+          />
+        </div>
+        <div class="info-text">
+          <p id="info-text">
+            Through advanced motion-capture technology, geobalance records user
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+      function moveSlide(direction) {
+        const slidesToShow = 3; // Number of slides to show in each group
+        const totalSlides = $(".slider").slick("getSlick").slideCount;
+        const maxGroups = Math.ceil(totalSlides / slidesToShow);
+        let newGroup;
+
+        if (direction === -1) {
+          newGroup =
+            currentSlide - 1 < 0
+              ? maxGroups - 1
+              : Math.floor((currentSlide - 1) / slidesToShow);
+        } else {
+          newGroup =
+            currentSlide + slidesToShow >= totalSlides
+              ? 0
+              : Math.floor((currentSlide + slidesToShow) / slidesToShow);
+        }
+
+        showGroup(newGroup);
+      }
+
+      $(document).ready(function () {
+        $(".slide")
+          .first()
+          .on("click", function (event) {
+            event.stopPropagation();
+          });
+
+        $(".slide")
+          .last()
+          .on("click", function (event) {
+            event.stopPropagation();
+          });
+        $(".slider").slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: false,
+          centerMode: true,
+          focusOnSelect: true,
+          centerPadding: "0", // Adjust this value as needed
+        });
+
+        $(".learn-more-btn").on("click", function () {
+          event.stopPropagation();
+          event.preventDefault();
+          const dataIndex = $(this).data("index");
+          const longDescription = getLongDescription(dataIndex);
+          const imageUrl = getImageUrl(dataIndex); // Call a function to get the corresponding image URL
+
+          // Update the info text with the corresponding long description
+          $("#info-text").text(longDescription);
+          $(".info-image img").attr("src", imageUrl); // Update the image source
+        });
+
+        function getImageUrl(index) {
+          switch (index) {
+            case 1:
+              return "images/james-barr-uNyv2CdcdSY-unsplash.jpg"; // Change this to the URL of your desired image for index 1
+            case 2:
+              return "images/fortune-vieyra-jD4MtXnsJ6w-unsplash.jpg"; // Change this to the URL of your desired image for index 2
+            // Add cases for other indices as needed
+            case 3:
+              return "images/james-barr-uNyv2CdcdSY-unsplash.jpg"; // Default image URL if no specific image is provided
+            case 4:
+              return "images/james-barr-ULqD07i0l7s-unsplash.jpg";
+            case 5:
+              return "images/connor-bowden-KgWaohVS-mc-unsplash.jpg";
+            case 6:
+              return "images/tim-foster-Odhl-kitI2c-unsplash.jpg";
+            case 7:
+              return "images/fortune-vieyra-jD4MtXnsJ6w-unsplash.jpg";
+            case 8:
+              return "images/james-barr-uNyv2CdcdSY-unsplash.jpg";
+            case 9:
+              return "images/james-barr-ULqD07i0l7s-unsplash.jpg";
+          }
+        }
+        function getLongDescription(index) {
+          // Replace the following switch statement with your actual long descriptions
+          switch (index) {
+            case 1:
+              return "Using advanced trackerless motion-capture technology, geobalance records and displays user information when engaging in physical activities such as exercises in sports or physical therapy settings.";
+            case 2:
+              return "Posture improvement through real-time bio-feedback overlay. Socrates states “above all know thyself”, geobalance provides users with tools to observe their posture and review how they are performing their exercises.";
+
+            case 3:
+              return "Using AI technology, geobalance suggests improvements through a live feedback interface including visual (overlay on top of the user, informational table) and audio (verbal instructions, positive reinforcement through motivational feedback) cues.";
+            case 4:
+              return "Geobalance provides users with the ability to review recordings and images of their previous workout whenever and wherever they want. This feature allow users to review their past form and be able to evaluate their progress over time.";
+            case 5:
+              return "Geoblance reports can be tailored to the needs of the end-user, medical professional, and insurance providers. For the end user, reports would be tailored towards future improvements. For the medical professional, reports can serve to guide future treatment improvements. And for insurance providers, geobalance reports can automatically document patient progress over time thus saving significant time for the medical professional.";
+            case 6:
+              return " In addition to the standard regulations for safekeeping of medical records as required by the HIPAA standard, when Geobalance is used in a medical setting, all visual recordings will be compliant as well. ";
+            case 7:
+              return "Geobalance provides users with an enhanced experience by creating a game-like-environment where users can socialize, learn, compete, and achieve multiple milestones within the system. For example, geobalance will implement a badge and leaderboards system, and in addition to promoting weekly challenges for users to compete against themselves or with others.";
+            case 8:
+              return "Ever wanted to workout in the Bahamas, how about working out in Space? With Geobalance, you can not only choose where to workout, but also with whom, including any of your favorite celebrities like the Rock or Vin Diesel. Even better, you could share these experiences with other users";
+            case 9:
+              return "Geobalance could be further extended to work with robots and other machinery to provide additional physical support for users through physical adjustment while exercising. In addition, by further extending the capabilities of Geobalance’s AI algorithm within the physical therapy realm, we envision Geobalance being able to provide more complex recommendations including suggesting supplemental exercises. Beyond physical therapy, Geobalance AI algorithm will be able to coach users by creating a personalized exercise remine tailored to their physical needs. Further extending the AI capabilities of Geobalance, we envision the use of physiological data (age, weight, height), biological data (blood pressure, breath rate) and observable data (skin tone, eye iris) to provide more complex diagnostics for the user.";
+          }
+        }
+
+        // Handle arrow button click events
+        $(".slider-navigation button").on("click", function () {
+          if ($(this).hasClass("prev")) {
+            $(".slider").slick("slickPrev");
+          } else if ($(this).hasClass("next")) {
+            $(".slider").slick("slickNext");
+          }
+        });
+        // Update currentSlide on afterChange event
+        $(".slider").on("afterChange", function (event, slick, currentSlide) {
+          updateCurrentSlide(currentSlide);
+        });
+        // Function to update currentSlide variable
+        function updateCurrentSlide(index) {
+          currentSlide = index;
+        }
+      });
+
+      function showGroup(groupNumber) {
+        const slidesToShow = 3; // Number of slides to show in each group
+        const totalSlides = $(".slider").slick("getSlick").slideCount;
+        const maxGroups = Math.ceil(totalSlides / slidesToShow);
+
+        if (groupNumber < 0) {
+          groupNumber = maxGroups - 1;
+        } else if (groupNumber >= maxGroups) {
+          groupNumber = 0;
+        }
+
+        const startIndex = groupNumber * slidesToShow;
+        $(".slider").slick("slickGoTo", startIndex);
+
+        // Update the active dot
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          if (index === groupNumber) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slide");
+
+        if (index < 0) {
+          currentSlide = slides.length - 1;
+        } else if (index >= slides.length) {
+          currentSlide = 0;
+        } else {
+          currentSlide = index;
+        }
+
+        const offset = -currentSlide * 100 + "%";
+
+        slider.style.transition = "transform 0.5s ease-in-out";
+        slider.style.transform = "translateX(" + offset + ")";
+      }
+
+      $(".slider").on("afterChange", function (event, slick, currentSlide) {
+        console.log("Slider changed to slide #" + currentSlide);
+        $(".dot").removeClass("active"); // Remove active class from all dots
+        $(".dot").eq(currentSlide).addClass("active"); // Add active class to the dot corresponding to the current slide
+      });
+
+      function generateDots(currentSlide) {
+        const result = 3;
+
+        let dotsHTML = "";
+        for (let i = 0; i < result; i++) {
+          dotsHTML += '<div class="dot';
+          if (currentSlide === i * 3) {
+            dotsHTML += " dot-active";
+          }
+          dotsHTML += '"></div>';
+        }
+
+        return dotsHTML;
+      }
+
+      $(document).ready(function () {
+        const dotContainer = $(".dot-container");
+        dotContainer.html(generateDots(0));
+
+        $(".slider").on("afterChange", function (event, slick, currentSlide) {
+          dotContainer.html(generateDots(currentSlide));
+        });
+      });
+
+      function removeLoadingClass() {
+        document.body.classList.remove("loading");
+      }
+
+      window.addEventListener("load", removeLoadingClass);
+    </script>
+  </body>
+</html>

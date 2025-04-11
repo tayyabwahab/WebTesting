@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Camera Capture</title>
+</head>
+<body>
+    <video id="videoElement" width="400" height="300" autoplay>wewew</video>
+    <button id="captureButton">Capture</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    const videoElement = document.getElementById('videoElement');
+    const captureButton = document.getElementById('captureButton');
+    let mediaStream;
+
+    // Initialize WebRTC media stream
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            videoElement.srcObject = stream;
+            mediaStream = stream;
+        })
+        .catch(function(err) {
+            console.error('Error accessing camera:', err);
+        });
+
+    // Capture frame when the button is clicked
+    captureButton.addEventListener('click', function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        const imageData = canvas.toDataURL('image/jpeg');
+
+        // Send captured frame to Django server using WebSocket
+        sendFrameToServer(imageData);
+    });
+
+    // Function to send frame to server via WebSocket
+    function sendFrameToServer(imageData) {
+        if (!mediaStream) {
+            console.error('Media stream not available.');
+            return;
+        }
+
+        const ws = new WebSocket('ws://127.0.0.1:8000/ws2');
+
+        ws.onopen = function() {
+            console.log('WebSocket connection established.');
+            // Send image data to server
+            ws.send(imageData);
+        };
+
+        ws.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+        ws.onclose = function() {
+            console.log('WebSocket connection closed.');
+        };
+    }
+});
+
+    </script>
+</body>
+</html>

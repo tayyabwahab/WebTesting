@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your existing head content -->
+
+    <style>
+        .container {
+            max-width: 1100px;
+            margin: 60px auto; /* Center the container vertically and horizontally */
+            padding: 0 20px; /* Add padding to the container */
+            text-align: center; /* Center the content within the container */
+        }
+
+        .step-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 21px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 88%;
+            height: 70px;
+        }
+
+        .step {
+            position: relative;
+            flex: 1;
+            padding: 15px;
+            cursor: pointer;
+            border: 1px solid #0073b1;
+            transition: background-color 0.3s ease;
+        }
+
+        .step::before {
+            content: attr(data-step-number);
+            display: block;
+            font-size: 40px;
+            margin-left: -5px; /* Adjust this value as needed */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .step-text {
+            font-size: 14px;
+            font-weight: normal;
+            position: relative;
+            color: grey;
+            display: inline-block;
+            background-color: white;
+            top: -1%;
+            transition: background-color 0.3s ease;
+            text-align: center; 
+        }
+
+        .step.active,
+        .step.active .step-text {
+            background-color: rgba(30, 152, 215, 255);
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-container {
+    position: relative;
+    top: 245px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 83%;
+    height: 400px;
+    display: flex;
+    margin-bottom: 70px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+        .info-text {
+            width: 50%;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 100%;
+            align-items: right;
+            text-align: justify; /* Added for justified text */
+        }
+
+        .info-image {
+            width: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: left; 
+        }
+
+        .info-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 100%; /* Ensure the image does not exceed the container's width */
+    max-height: 500px; /* Set a max height to avoid enlarging the container */
+}
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh; /* Ensure body takes up at least the full viewport height */
+            overflow: auto; /* Enable scrollbars if content overflows */
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            padding: 10px 40px;
+            color: black;
+            border: 1px solid black;
+            border-radius: 7px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        nav {
+            margin: 0 auto; /* Center the nav element */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 17px;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the items in the navigation */
+        }
+
+        nav li {
+            margin-right: 80px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: grey;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: black;
+        }
+
+        img {
+            height: 70px;
+        }
+
+        .profile-logo {
+            height: 20px;
+        }
+
+        @media screen and (max-width: 900px) {
+            nav li {
+                margin: 0;
+                margin-right: 20px;
+                font-size: 14px;
+            }
+
+            nav {
+                overflow: auto;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            nav.show-menu li {
+                display: block;
+            }
+
+            .step-container {
+                flex-direction: row; /* Display horizontally on smaller screens */
+                align-items: center;
+                margin-top: -20px;
+            }
+
+            .step {
+                margin-top: 10px;
+                flex: none;
+                width: 30%; /* Adjust the width percentage */
+            }
+
+            .step:nth-child(4) {
+                border-left: 1px solid #0073b1; /* Add left border for Step 2 and Step 3 on smaller screens */
+            }
+
+            .step-text {
+                font-size: 12px; /* Adjust the font size for smaller screens */
+                margin-left: -20px; /* Adjust the margin for smaller screens */
+            }
+
+            .step::before {
+                font-size: 25px;
+            }
+
+            .info-container {
+                width: 80%; /* Adjust the width percentage for smaller screens */
+                top: 70%;
+            }
+
+            .info-text,
+            .info-image {
+                width: 100%; /* Full width on smaller screens */
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://cdn.pixabay.com/photo/2022/05/21/21/33/vitruvian-man-7212326_1280.png" alt="Your Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li class="home-link"><a href="/home">Home</a></li>
+                    <li><a href="/how_to_use">How to Use</a></li>
+                    <li><a href="/excercise">Select Exercise</a></li>
+                    <li><a href="/feedback">Feedback</a></li>
+                </ul>
+            </nav>
+            <img class="profile-logo" src="images/user (1).png" alt="Profile Logo">
+        </header>
+        <div class="step-container">
+            <div class="step" data-step-number="1" onclick="showStep(1)">
+                <span class="step-text"><b>Step 1</b> <br>Instructions</span>
+            </div>
+            <div class="step" data-step-number="2" onclick="showStep(2)">
+                <span class="step-text"><b>Step 2</b><br> Instructions</span>
+            </div>
+            <div class="step" data-step-number="3" onclick="showStep(3)">
+                <span class="step-text"><b>Step 3</b> <br>Instructions</span>
+            </div>
+        </div>
+        <div class="info-container">
+            <div id="info-image-container" class="info-image">
+                <img src="images/alora-griffiths-TuzrzArccvc-unsplash.jpg" alt="Full-size Image" id="info-image">
+            </div>
+            <div class="info-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus nemo, inventore aut ipsam assumenda recusandae repellat laborum dolorem obcaecati tempora et voluptas vero consequuntur illum animi deleniti fuga possimus quibusdam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente sequi assumenda porro, eaque aliquid, officia exercitationem, ad vitae voluptatibus voluptates molestias! Corporis quod ad consequatur iste cupiditate fugiat voluptates eaque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid magni magnam distinctio. Nobis atque cum incidunt aspernatur corporis, nostrum magni magnam ex pariatur possimus totam doloremque minus vitae aut perspiciatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio inventore velit iusto porro quae facere, quaerat numquam distinctio, sit in rerum adipisci cupiditate saepe soluta? Architecto corrupti delectus vel explicabo. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function showStep(stepNumber) {
+            // Remove 'active' class from all steps
+            var steps = document.querySelectorAll('.step');
+            steps.forEach(function (step) {
+                step.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked step
+            var activeStep = document.querySelector('.step[data-step-number="' + stepNumber + '"]');
+            activeStep.classList.add('active');
+
+            // Update image source based on the step number
+            var imageContainer = document.getElementById("info-image-container");
+            var imageElement = document.getElementById("info-image");
+
+            switch (stepNumber) {
+                case 1:
+                    imageElement.src = "images/alora-griffiths-TuzrzArccvc-unsplash.jpg"; // Replace with the path to your Step 1 image
+                    break;
+                case 2:
+                    imageElement.src = "images/james-barr-uNyv2CdcdSY-unsplash.jpg"; // Replace with the path to your Step 2 image
+                    break;
+                case 3:
+                    imageElement.src = "images/james-barr-7U0yuZcS5yA-unsplash.jpg"; // Replace with the path to your Step 3 image
+                    break;
+                // Add more cases for additional steps if needed
+            }
+
+            // Add logic to show the content related to the selected step
+            console.log("Show content for Step " + stepNumber);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+    // Trigger click on Step 1 when the page is loaded
+    showStep(1);
+});
+
+    </script>
+    <!-- Your existing JavaScript libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
+</html>

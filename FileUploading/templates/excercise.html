@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- ====================== styling, title, links====================== -->
+  <head>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+      }
+
+      .container {
+        position: relative;
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: white;
+        padding: 10px 40px;
+        color: black;
+        border: 1px solid black;
+        border-radius: 7px;
+        width: 90%;
+        margin: 20px auto;
+      }
+
+      nav {
+        margin: 0 auto;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        font-size: 17px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav li {
+        margin-right: 80px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: grey;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: black;
+      }
+
+      img {
+        height: 70px;
+      }
+
+      .profile-logo {
+        height: 20px;
+      }
+
+      .exercise-option:nth-child(4).exercise-option.clicked {
+        padding: 9px !important;
+      }
+
+      .exercise-container {
+        border: 1px solid rgb(201, 193, 193);
+        border-radius: 7px;
+        margin: 40px auto;
+        padding: 8px;
+        display: flex;
+        justify-content: space-around;
+        color: white;
+        align-items: center;
+        height: 20px;
+        width: 80%;
+      }
+
+      .exercise-option {
+        padding: 12px;
+        font-size: 12px;
+        margin: 0;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid grey;
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .exercise-option:last-child {
+        border-right: none;
+      }
+
+      .exercise-option a {
+        color: rgba(30, 152, 215, 255);
+      }
+
+      .exercise-option.clicked a {
+        color: white !important;
+        background-color: rgba(30, 152, 215, 255) !important;
+        font-weight: bold;
+      }
+
+      .exercise-option.clicked {
+        color: white !important;
+        background-color: rgba(30, 152, 215, 255) !important;
+        font-weight: bold;
+      }
+
+      .nav-button {
+        padding: 11px;
+        font-size: 12px;
+        margin: 0;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid grey;
+        color: rgba(30, 152, 215, 255);
+        cursor: pointer;
+      }
+      .nav-button:last-child {
+        border-right: none;
+      }
+      .additional-container {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin: 20px 8px;
+        width: 100px;
+      }
+      .toggled .toggle-button {
+        background-color: grey;
+      }
+      .additional-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid rgb(201, 193, 193);
+        cursor: pointer;
+        width: 220px;
+        font-size: 13px;
+        margin-left: 35px;
+      }
+      .additional-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        margin-bottom: -1px;
+        width: 280px;
+      }
+      .blue-button {
+        margin-bottom: 5px;
+        padding: 10px;
+        background-color: rgba(30, 152, 215, 255);
+        color: white;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        margin: 5px;
+        margin-left: 35px;
+      }
+      .modal {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 7px;
+        text-align: center;
+        width: 50%;
+        height: 60%;
+        max-width: 140%;
+        max-height: 70vh;
+        overflow: hidden;
+      }
+      .modal-video {
+        width: 600px;
+        height: auto;
+        max-height: 300px;
+      }
+      .toggle-input:checked + .toggle-slider {
+        background-color: rgba(30, 152, 215, 255);
+      }
+      .modal-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+      }
+      .modal-button {
+        padding: 10px;
+        background-color: rgba(30, 152, 215, 255);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: right;
+      }
+      .sample-exercise-text {
+        color: grey;
+        font-weight: bold;
+        margin-top: 13px;
+        margin-left: 5px;
+        margin-bottom: -1px;
+      }
+      .modal-sample-exercise {
+        text-align: left;
+        font-size: 20px;
+        margin-bottom: 15px;
+        margin-top: -20px;
+      }
+      .sample-exercise-header {
+        display: flex;
+        align-items: center;
+      }
+      .sample-exercise-line {
+        width: 900px;
+        border-bottom: 1px solid grey;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+      .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
+      .modal-ok {
+        background-color: rgb(82, 128, 226);
+        color: white;
+        margin-right: 5px;
+        width: 113px;
+      }
+      .modal-cancel {
+        background-color: white;
+        border: 1px solid grey;
+        margin-right: 14px;
+        width: 113px;
+        color: grey;
+      }
+      .toggle-container {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 20px;
+      }
+      .toggle-input {
+        display: none;
+      }
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: -1px;
+        left: 18px;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        border-radius: 34px;
+        transition: 0.4s;
+      }
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 4px;
+        bottom: 1px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+      .toggle-input:checked + .toggle-slider:before {
+        transform: translateX(18px);
+      }
+      #live-camera-feed {
+        position: relative;
+        width: 650px;
+        height: 423px;
+        border: 1px solid #ccc;
+        margin-top: -289px;
+        margin-left: 345px;
+      }
+      .live-camera-feed {
+        width: 100%;
+        max-width: 774px;
+        height: auto;
+        border: 1px solid #ccc;
+        margin-top: -1px;
+        margin-left: -1px;
+      }
+      .demo-gif-container {
+    display: none;
+    width: 230px;
+    height: 204px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    overflow: hidden;
+    position: absolute;
+    top: 482px;
+    left: 15.5%;
+    transform: translateX(-50%);
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+      .demo-gif-container.visible {
+        display: block;
+      }
+
+      .demo-gif {
+    width: 100%;       /* Stretch to full width of container */
+    height: 100%;      /* Stretch to full height of container */
+    object-fit: cover; /* Maintain aspect ratio while filling container */
+}
+
+      table {
+    border-collapse: collapse;
+    width: 61%;
+    max-width: 650px;
+    margin: 81px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: rgba(207, 209, 208, 255);
+    margin-left: 345px;
+}
+table.visible {
+  visibility: visible;
+}
+.remarks {
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.remarks.great {
+    color: green;
+}
+
+.remarks.warning {
+    color: orange;
+}
+
+.remarks.dangerous {
+    color: red;
+}
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    tr {
+      background-color: rgba(207, 209, 208, 255);
+    }
+
+    td {
+      font-weight: normal;
+    }
+    td.step1 {
+      color: rgba(153, 153, 153, 255);
+    }
+    td.joints,
+    td.current {
+      font-weight: bold;
+    }
+
+    td.remarks {
+      color: green;
+      
+    }
+    .fullscreen-button {
+  position: absolute;
+  bottom: 380px;
+  right: 13px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.fullscreen-button:hover {
+  background-color: #333;
+}
+
+
+      @media screen and (max-width: 900px) {
+        nav li {
+          margin: 0;
+          margin-right: 20px;
+          font-size: 14px;
+        }
+        nav {
+          overflow: auto;
+        }
+        nav a {
+          margin: 5px;
+        }
+        nav.show-menu li {
+          display: block;
+        }
+        .exercise-container {
+          width: 90%;
+        }
+        .exercise-option,
+        .nav-button {
+          padding: 8px;
+          font-size: 10px;
+        }
+        .exercise-container {
+          width: 90%;
+        }
+        .exercise-option,
+        .nav-button {
+          width: 90%;
+          padding: 13px;
+          font-size: 10px;
+        }
+        .exercise-option:nth-child(4),
+        .exercise-option:nth-child(6) {
+          padding: 7px !important;
+        }
+        #live-camera-feed {
+          width: 300px;
+          height: 300px;
+          margin-left: 290px;
+          margin-top: -288px;
+        }
+        .live-camera-feed {
+          width: 100%;
+          max-width: 1000px;
+          height: inherit;
+        }
+        #webcam-video {
+          position: absolute;
+          opacity: 0;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          display: none !important;
+          pointer-events: none;
+        }
+
+        .live-camera-feed {
+          width: 100%;
+          max-width: 774px;
+          height: auto;
+          border: 1px solid #ccc;
+          margin-top: -1px;
+          margin-left: -1px;
+        }
+      }
+    </style>
+    <head>
+      <meta charset="UTF-8" />
+      <script src="https://www.youtube.com/iframe_api"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        crossorigin="anonymous"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+      />
+    </head>
+    <title>Your Fitness App</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <img
+            src="https://cdn.pixabay.com/photo/2022/05/21/21/33/vitruvian-man-7212326_1280.png"
+            alt="Your Logo"
+          />
+        </div>
+        <nav>
+          <ul>
+            <li class="home-link"><a href="/home">Home</a></li>
+            <li><a href="/how_to_use">How to Use</a></li>
+            <li><a href="/excercise">Select Exercise</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+          </ul>
+        </nav>
+        <img
+          class="profile-logo"
+          src="images/user (1).png"
+          alt="Profile Logo"
+        />
+      </header>
+      <div class="exercise-container">
+        <div class="nav-button prev">&#8249; Prev</div>
+        <div class="exercise-option" data-exercise="bridge"><a href="#">Bridge</a></div>
+        <div class="exercise-option" data-exercise="squats"><a href="#">Squats</a></div>
+        <div class="exercise-option" data-exercise="downward-planks"><a href="#">Downward Planks</a></div>
+        <div class="nav-button next">Next &#8250;</div>
+      </div>
+
+      <!-- New container for additional divs and buttons -->
+      <div class="additional-option">
+        Show Colored Overlay
+        <label class="toggle-container">
+          <input
+            type="checkbox"
+            class="toggle-input"
+            onchange="updateToggleValue(this, 'toggle-value-1')"
+          />
+          <span class="toggle-slider"></span>
+        </label>
+        <input type="hidden" id="toggle-value-1" value="0" />
+      </div>
+
+      <div class="additional-option">
+        Show Angles on Overlay
+        <label class="toggle-container">
+          <input
+            type="checkbox"
+            class="toggle-input"
+            onchange="updateToggleValue(this, 'toggle-value-2')"
+          />
+          <span class="toggle-slider"></span>
+        </label>
+        <input type="hidden" id="toggle-value-2" value="0" />
+      </div>
+
+      <div class="additional-option">
+        Show Info Table
+        <label class="toggle-container">
+          <input
+            type="checkbox"
+            class="toggle-input"
+            onchange="updateToggleValue(this, 'toggle-value-3')"
+          />
+          <span class="toggle-slider"></span>
+        </label>
+        <input type="hidden" id="toggle-value-3" value="0" />
+      </div>
+      <div class="additional-option">
+        Show Sample Demo
+        <label class="toggle-container">
+          <input
+            type="checkbox"
+            class="toggle-input"
+            onchange="updateToggleValue(this, 'toggle-value-sample-demo')"
+            id="toggle-sample-demo"
+          />
+          <span class="toggle-slider"></span>
+        </label>
+        <input type="hidden" id="toggle-value-sample-demo" value="0" />
+      </div>
+
+      
+      <div class="additional-buttons">
+        <button class="blue-button">Show Sample Exercise</button>
+        <button class="blue-button">Start Feedback</button>
+
+      </div>
+      
+
+      <!-- ============================= webcam-video =============================== -->
+      
+      <div id="live-camera-feed">
+        <button id="fullscreen-btn" class="fullscreen-button">⛶</button>
+        <video style="display: none" id="webcam-video" autoplay></video>
+        <canvas
+          style="display: none"
+          id="processed-video"
+          class="live-camera-feed"
+        ></canvas>
+        <img
+          src=""
+          id="test-capture-image"
+          class="live-camera-feed"
+        />
+      </div>
+      <div class="demo-gif-container">
+        <img src="" alt="Exercise Demo" class="demo-gif" id="demoGif">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Joints</th>
+            <th>Current</th>
+            <th>Step 1</th>
+            <th>Step 2</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="joints">Hip Left</td>
+            <td class="current">160</td>
+            <td>65 - 85</td>
+            <td class="step2">155 - 175</td>
+            <td class="remarks">• Great</td>
+          </tr>
+          <tr>
+            <td class="joints">Hip Right</td>
+            <td class="current">160</td>
+            <td>65 - 85</td>
+            <td class="step2">155 - 175</td>
+            <td class="remarks">• Great</td>
+          </tr>
+          <tr>
+            <td class="joints">Knee Left</td>
+            <td class="current">180</td>
+            <td>70 - 90</td>
+            <td class="step2">165 - 185</td>
+            <td class="remarks">• Great</td>
+          </tr>
+          <tr>
+            <td class="joints">Knee Right</td>
+            <td class="current">180</td>
+            <td>70 - 90</td>
+            <td class="step2">165 - 185</td>
+            <td class="remarks">• Great</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="modal">
+      <div class="modal-content">
+        <div class="modal-sample-exercise">
+          <div class="sample-exercise-header">
+            <img
+              src="images/victor-freitas-WvDYdXDzkhs-unsplash.jpg"
+              alt="Sample Exercise Image"
+              style="
+                width: 50px;
+                height: 40px;
+                margin-right: 10px;
+                margin-top: 10px;
+              "
+            />
+            <span class="sample-exercise-text">Sample Exercise</span>
+          </div>
+        </div>
+
+        <div class="sample-exercise-line"></div>
+
+        <div id="youtubePlayer"></div>
+        <div
+          class="sample-exercise-line"
+          style="margin-top: 15px; margin-bottom: 5px"
+        ></div>
+        <div class="modal-buttons">
+          <button class="modal-button modal-cancel">Cancel</button>
+          <button class="modal-button modal-ok">OK</button>
+        </div>
+      </div>
+
+    </div>
+    <script>
+      document.getElementById("fullscreen-btn").addEventListener("click", () => {
+  const image = document.getElementById("test-capture-image");
+
+  if (!document.fullscreenElement) {
+    // Enter fullscreen mode
+    if (image.requestFullscreen) {
+      image.requestFullscreen();
+    } else if (image.webkitRequestFullscreen) { // For Safari
+      image.webkitRequestFullscreen();
+    } else if (image.msRequestFullscreen) { // For IE/Edge
+      image.msRequestFullscreen();
+    }
+  } else {
+    // Exit fullscreen mode
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // For Safari
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // For IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+});
+
+      </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const demoToggle = document.getElementById('toggle-sample-demo');
+        const demoContainer = document.querySelector('.demo-gif-container');
+        const demoGif = document.getElementById('demoGif');
+        const exerciseOptions = document.querySelectorAll('.exercise-option');
+        const infoTable = document.querySelector('table');
+
+// Function to update table visibility
+function updateTableVisibility() {
+  const showInfoTable = document.getElementById('toggle-value-3').value === "1";
+  infoTable.style.display = showInfoTable ? 'table' : 'none';
+}
+
+// Call the function whenever the toggle is clicked
+document.querySelectorAll('.toggle-input').forEach(toggle => {
+  toggle.addEventListener('change', updateTableVisibility);
+});
+
+// Initial table visibility based on toggle state
+updateTableVisibility();
+        
+        const exerciseGifs = {
+          'bridge': '/images/Bridge.gif',
+          'squats': '/images/Squat.gif',
+          'downward-planks': '/images/Downward Plank.gif'
+        };
+        // Function to update the demo GIF
+        function updateDemoGif(exercise) {
+          demoGif.src = exerciseGifs[exercise];
+          demoGif.style.maxWidth = '100%';
+demoGif.style.maxHeight = '100%';
+          console.log('Updating GIF for:', exercise); // Debug log
+        }
+
+        // Handle demo toggle
+        demoToggle.addEventListener('change', function() {
+          const activeExercise = document.querySelector('.exercise-option.clicked');
+          if (this.checked) {
+            demoContainer.classList.add('visible');
+            // Update GIF based on currently selected exercise
+            if (activeExercise) {
+              const exercise = activeExercise.getAttribute('data-exercise');
+              updateDemoGif(exercise);
+            } else {
+              // Default to first exercise if none selected
+              updateDemoGif('bridge');
+              exerciseOptions[1].classList.add('clicked');
+            }
+          } else {
+            demoContainer.classList.remove('visible');
+          }
+        });
+
+        // Handle exercise selection
+        exerciseOptions.forEach(option => {
+          option.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove clicked class from all options
+            exerciseOptions.forEach(opt => opt.classList.remove('clicked'));
+            
+            // Add clicked class to selected option
+            this.classList.add('clicked');
+            
+            const exercise = this.getAttribute('data-exercise');
+            
+            // Update GIF if demo is visible
+            if (demoToggle.checked) {
+              updateDemoGif(exercise);
+            }
+          });
+        });
+
+        // Initialize with first exercise selected
+        exerciseOptions[1].classList.add('clicked');
+        if (demoToggle.checked) {
+          updateDemoGif('bridge');
+          demoContainer.classList.add('visible');
+        }
+
+        // Handle next/prev navigation
+        const nextButton = document.querySelector('.nav-button.next');
+        const prevButton = document.querySelector('.nav-button.prev');
+
+        function navigateExercises(direction) {
+          const currentExercise = document.querySelector('.exercise-option.clicked');
+          let nextElement;
+
+          if (direction === 'next') {
+            nextElement = currentExercise.nextElementSibling;
+            if (!nextElement || nextElement.classList.contains('nav-button')) {
+              nextElement = exerciseOptions[1]; // First exercise
+            }
+          } else {
+            nextElement = currentExercise.previousElementSibling;
+            if (!nextElement || nextElement.classList.contains('nav-button')) {
+              nextElement = exerciseOptions[exerciseOptions.length - 2]; // Last exercise
+            }
+          }
+
+          if (nextElement) {
+            currentExercise.classList.remove('clicked');
+            nextElement.classList.add('clicked');
+            
+            if (demoToggle.checked) {
+              updateDemoGif(nextElement.getAttribute('data-exercise'));
+            }
+          }
+        }
+
+        nextButton.addEventListener('click', () => navigateExercises('next'));
+        prevButton.addEventListener('click', () => navigateExercises('prev'));
+      });
+    </script>
+
+    <script>
+async function startWebcam() {
+    let selectedExercise = 'bridge';
+    const webcamVideo = document.getElementById("webcam-video");
+    const processedCanvas = document.getElementById("processed-video");
+    const ctx = processedCanvas.getContext("2d");
+    const websocket = new WebSocket("ws://127.0.0.1:8001/ws/video/");
+
+    let lastFrameTime = 0;
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+            });
+            webcamVideo.srcObject = stream;
+
+            webcamVideo.addEventListener("loadedmetadata", function () {
+                processedCanvas.width = webcamVideo.videoWidth;
+                processedCanvas.height = webcamVideo.videoHeight;
+            });
+
+            webcamVideo.addEventListener("play", function () {
+// Find this in your existing code where you send frames
+const sendFrame = () => {
+    const currentFrameTime = performance.now();
+    const frameDelay = currentFrameTime - lastFrameTime;
+
+    if (frameDelay >= 20) {  // Adjusting to send frames every ~50 ms
+        lastFrameTime = currentFrameTime;
+
+        ctx.drawImage(webcamVideo, 0, 0);
+        const frameData = processedCanvas.toDataURL("image/jpeg", 0.7);
+
+        // Get the currently selected exercise
+        const selectedExercise = document.querySelector('.exercise-option.clicked').getAttribute('data-exercise');
+        console.log('Current exercise:', selectedExercise); // For debugging
+
+        // Retrieve the state of each toggle
+        const showColoredOverlay = document.getElementById('toggle-value-1').value === "1";
+        const showAnglesOnOverlay = document.getElementById('toggle-value-2').value === "1";
+        const showInfoTable = document.getElementById('toggle-value-3').value === "1";
+
+        // Send the frame data along with the selected exercise
+        websocket.send(JSON.stringify({
+            frame: frameData,
+            selected_exercise: selectedExercise,  // Add this line
+            show_colored_overlay: showColoredOverlay,
+            show_angles_on_overlay: showAnglesOnOverlay,
+            show_info_table: showInfoTable
+        }));
+
+        console.log(`Delay between frames: ${frameDelay.toFixed(2)} ms`);
+    }
+
+    requestAnimationFrame(sendFrame);
+};
+                sendFrame();
+            });
+
+            websocket.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    const imgElement = document.getElementById("test-capture-image");
+    
+    // Update the image
+    if (data.processed_frame) {
+        imgElement.src = data.processed_frame;
+        const img = new Image();
+        img.onload = function () {
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                processedCanvas.width,
+                processedCanvas.height
+            );
+        };
+        img.src = data.processed_frame;
+    }
+    
+    // Update the table values if joints_data is present
+    if (data.joints_data) {
+        // Update current values
+        document.querySelector('tr:nth-child(1) .current').textContent = data.joints_data.hip_left;
+        document.querySelector('tr:nth-child(2) .current').textContent = data.joints_data.hip_right;
+        document.querySelector('tr:nth-child(3) .current').textContent = data.joints_data.knee_left;
+        document.querySelector('tr:nth-child(4) .current').textContent = data.joints_data.knee_right;
+        
+        // Update remarks and their styling
+        const remarkCells = document.querySelectorAll('.remarks');
+        const joints = ['hip_left', 'hip_right', 'knee_left', 'knee_right'];
+        
+        joints.forEach((joint, index) => {
+            const remarkCell = remarkCells[index];
+            const remarkText = data.remarks[joint];
+            remarkCell.textContent = `• ${remarkText}`;
+            
+            // Update styling based on remark
+            remarkCell.style.color = remarkText === 'Great' ? 'green' : 
+                                   remarkText === 'Warning' ? 'orange' : 
+                                   'red';
+            remarkCell.style.fontWeight = 'bold';
+        });
+
+        // Handle step column bolding
+        const tableRows = document.querySelectorAll('table tbody tr');
+        tableRows.forEach(row => {
+            const step1Cell = row.querySelector('td:nth-child(3)');
+            const step2Cell = row.querySelector('td:nth-child(4)');
+
+            // Reset styles first
+            step1Cell.style.fontWeight = 'normal';
+            step2Cell.style.fontWeight = 'normal';
+
+            // Bold the appropriate column based on bold_step_one
+            if (data.bold_step_one) {
+                step1Cell.style.fontWeight = 'bold';
+            } else {
+                step2Cell.style.fontWeight = 'bold';
+            }
+        });
+    }
+};
+        } catch (error) {
+            console.error("Error accessing camera:", error);
+        }
+    } else {
+        console.error("getUserMedia not supported in this browser");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    startWebcam();
+});
+
+    </script>
+    <!-- <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const liveCameraFeedContainer = document.getElementById('live-camera-feed');
+        
+                    // Check if the browser supports the getUserMedia API
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        // Access the user's camera
+                        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+                            .then(function (stream) {
+                                // Create a video element for the live camera feed
+                                const videoElement = document.createElement('video');
+                                videoElement.srcObject = stream;
+                                videoElement.autoplay = true;
+                                videoElement.width = 640; // Set the desired width
+                                videoElement.height = 480; // Set the desired height
+        
+                                // Append the video element to the container
+                                liveCameraFeedContainer.appendChild(videoElement);
+                            })
+                            .catch(function (error) {
+                                console.error('Error accessing camera:', error);
+                            });
+                    } else {
+                        console.error('getUserMedia not supported in this browser');
+                    }
+        
+                    // Add the rest of your existing script code here
+                });
+            </script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const exerciseOptions = document.querySelectorAll(".exercise-option");
+        const navButtons = document.querySelectorAll(".nav-button");
+        const toggleButtons = document.querySelectorAll(".toggle-button");
+        const sampleExerciseButton = document.querySelector(".blue-button");
+        const modal = document.querySelector(".modal");
+        const modalOKButton = document.querySelector(".modal-ok");
+        const modalCancelButton = document.querySelector(".modal-cancel");
+        let youtubePlayer; // Variable to store the YouTube player instance
+
+        // Function to create and initialize the YouTube player
+        function initYouTubePlayer() {
+          youtubePlayer = new YT.Player("youtubePlayer", {
+            height: "300", // Set the desired height
+            width: "100%", // Set the desired width
+            videoId: "gsNoPYwWXeM", // Replace with your actual YouTube video ID
+            playerVars: {
+              autoplay: 0, // Auto-play disabled
+              controls: 1, // Show player controls
+              rel: 0, // Hide related videos
+              showinfo: 0, // Hide video title and uploader info
+              modestbranding: 1, // Remove YouTube logo
+            },
+          });
+        }
+
+        sampleExerciseButton.addEventListener("click", function () {
+          toggleButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+              button.classList.toggle("on");
+            });
+          });
+
+          modal.style.display = "flex";
+
+          // Initialize the YouTube player when the button is clicked
+          if (typeof YT !== "undefined" && typeof YT.Player !== "undefined") {
+            initYouTubePlayer();
+          } else {
+            // If the YouTube API is not loaded, load it asynchronously
+            const tag = document.createElement("script");
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName("script")[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // Set a callback function to initialize the player once the API is loaded
+            window.onYouTubeIframeAPIReady = initYouTubePlayer;
+          }
+        });
+
+        exerciseOptions.forEach(function (option) {
+          option.addEventListener("click", function () {
+            updateClickedOption(option);
+          });
+        });
+
+        navButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            const currentClickedOption = document.querySelector(
+              ".exercise-option.clicked"
+            );
+            const currentIndex =
+              Array.from(exerciseOptions).indexOf(currentClickedOption);
+            let newIndex;
+
+            if (button.classList.contains("next")) {
+              newIndex = (currentIndex + 1) % exerciseOptions.length;
+            } else if (button.classList.contains("prev")) {
+              newIndex =
+                (currentIndex - 1 + exerciseOptions.length) %
+                exerciseOptions.length;
+            }
+
+            updateClickedOption(exerciseOptions[newIndex]);
+          });
+        });
+
+        sampleExerciseButton.addEventListener("click", function () {
+          modal.style.display = "flex";
+        });
+
+        modalOKButton.addEventListener("click", function () {
+          // Add your logic for OK button action here
+          modal.style.display = "none";
+        });
+
+        modalCancelButton.addEventListener("click", function () {
+          // Add your logic for Cancel button action here
+          modal.style.display = "none";
+        });
+
+        // Set Exercise 3 as already clicked when the page loads
+        const exercise3 = document.querySelector(
+          ".exercise-option:nth-child(3)"
+        );
+        updateClickedOption(exercise3);
+      });
+
+      function updateClickedOption(option) {
+        const exerciseOptions = document.querySelectorAll(".exercise-option");
+        exerciseOptions.forEach(function (el) {
+          el.classList.remove("clicked");
+        });
+
+        option.classList.add("clicked");
+      }
+      function updateToggleValue(toggle, inputId) {
+        const toggleValueInput = document.getElementById(inputId);
+        if (toggle.checked) {
+          toggleValueInput.value = "1"; // Set value to 1 when toggle is checked
+        } else {
+          toggleValueInput.value = "0"; // Set value to 0 when toggle is unchecked
+        }
+        printToggleValues();
+      }
+
+      // Function to print the values of the hidden input fields
+      function printToggleValues() {
+        const toggleValues = [];
+        const toggleValueInputs = document.querySelectorAll(
+          'input[type="hidden"]'
+        );
+        toggleValueInputs.forEach(function (input) {
+          toggleValues.push(input.value);
+        });
+        console.log(toggleValues);
+        console.log("hello world");
+      }
+    </script>
+  </body>
+</html>

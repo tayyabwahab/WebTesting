@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .container1 {
+            position: relative;
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            padding: 10px 40px;
+            color: black;
+            border: 1px solid black;
+            border-radius: 7px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        nav {
+            margin: 0 auto;
+            /* Center the nav element */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-size: 17px;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Center the items in the navigation */
+        }
+
+        nav li {
+            margin-right: 80px;
+        }
+
+
+
+        nav a {
+            text-decoration: none;
+            color: grey;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: black;
+        }
+
+        img {
+            height: 70px;
+        }
+
+        .profile-logo {
+            height: 20px;
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: -72px auto;
+            flex-wrap: wrap;
+            width: 80%;
+        }
+
+        .left-section img,
+        .right-section img {
+            height: 130px;
+            width: 130px;
+            margin-bottom: 60px;
+            /* Adjusted for better spacing */
+        }
+
+        .left-section,
+        .right-section {
+            margin: 30px 0;
+            /* Adjusted for spacing */
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            width: 48%;
+            /* Adjusted width to allow for some spacing */
+            max-width: 106px;
+            /* Added a maximum width for better responsiveness */
+        }
+
+        .input-group {
+            margin: 60px auto;
+            /* Center the container vertically and horizontally */
+            padding: 0 20px;
+            /* Add padding to the container */
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        
+        .input-group select{
+            width: 142%;
+            height: 40px; /* Same height for inputs */
+            margin: 10px; /* Align center */
+            padding: 2px; /* Add padding for spacing */
+            border: 1px solid rgb(199, 182, 182);
+            border-radius: 4px;
+            background-color: rgb(249, 245, 245);
+            font-size: 16px;
+        }
+        .input-group input,
+        .input-group textarea {
+            width: 140%; 
+            height: 40px; 
+            resize: none;
+            margin: 10px; 
+            padding: 2px; 
+            border: 1px solid rgb(199, 182, 182);
+            border-radius: 4px;
+            background-color: rgb(249, 245, 245);
+            font-size: 16px;
+        }
+
+        .input-group textarea {
+            height: 140px;
+            
+        }
+
+
+        textarea {
+            height: 20%;
+        }
+
+
+        input {
+            height: 6%;
+        }
+
+        select {
+            height: 6%;
+            padding-left: 8px;
+            font-size: 15px;
+            background-color: rgb(249, 245, 245);
+        }
+
+        .selected {
+            border: 1px solid #49acdf !important;
+            background-color: #7cc2e85b;
+            color: #49acdf !important;
+            cursor: pointer;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        label {
+            color: grey;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            text-align: left;
+            width: 140%;
+        }
+
+        input[type="range"] {
+            height: 10%;
+            width: 60%;
+            margin: 0px 10px;
+            height: 20px;
+        }
+
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 140%;
+            
+            text-align: left;
+        }
+   
+
+    .ratings-label{
+        margin-left: 200px;
+        margin-bottom: 20px;
+    }
+        .rating-slider {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 170%;
+           
+            margin: 10 auto;
+            
+        }
+
+        .rating-slider-container {
+            position: relative;
+            display: flex;
+        
+            align-items: center;
+           
+            margin-top: 30px;
+        }
+
+        .rating-face {
+            width: 40px;
+            /* Adjust the width as needed */
+            margin: 0 10px;
+            /* Adjust the margin to bring faces closer */
+            display: flex;
+            /* Make it a flex container */
+            flex-direction: column-reverse;
+            /* Reverse the order of items vertically */
+        }
+
+        .rating-face img {
+            height: 35px;
+            /* Adjust the height as needed */
+        }
+
+    
+
+
+        .rating-option {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px auto;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+        
+
+        .rating-options {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+    
+
+        .rating-option:hover {
+            border-color: rgb(121, 121, 174);
+        }
+
+        .rating-slider-container {
+            position: relative;
+        }
+
+        .feedback-box {
+            position: absolute;
+            top: -30px;
+            /* Adjust the top position as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(249, 245, 245);
+            width: 90px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* Additional styles for the text below rating options */
+        .rating-option {
+            position: relative;
+            text-align: center;
+        }
+
+        .rating-option:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 48px;
+    font-size: 12px;
+    color: grey;
+    white-space: nowrap;
+}
+
+.rating-option:first-child:after {
+    left: 4px; /* Adjust as needed */
+    text-align: right;
+}
+
+.rating-option:last-child:after {
+    right: 0px; /* Adjust as needed */
+    text-align: left;
+}
+
+        .submit-button-container {
+            text-align: center;
+            margin-top: 40px;
+            /* Adjust the margin as needed */
+        }
+
+        /* Add these styles for the submit button */
+        .submit-button {
+            background-color: rgba(30, 152, 215, 255);
+            color: white;
+            padding: 10px 20px; /* Increase padding for a larger button */
+    font-size: 18px; /* Increase font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px; 
+    margin-right: 0;
+
+        }
+
+        @media screen and (max-width: 900px) {
+
+            .dot {
+                width: 14px;
+                height: 14px;
+            }
+
+            .learn-more-btn {
+                font-size: 12px;
+            }
+
+            .slider {
+                width: 80%;
+                /* Make the slider full-width on smaller screens */
+            }
+
+            .content h3 {
+                font-size: 13px;
+                /* Adjust font size for smaller screens */
+            }
+
+            .disc {
+                font-size: 10px;
+            }
+
+            nav li {
+
+                margin: 0;
+                margin-right: 20px;
+                font-size: 14px;
+            }
+
+            nav {
+                overflow: auto;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            nav.show-menu li {
+                display: block;
+            }
+
+            .info-container {
+                flex-direction: row;
+                /* Stack items vertically on smaller screens */
+                width: 80%;
+                /* Make the container full-width on smaller screens */
+
+            }
+
+            .info-text h2 {
+                font-size: 24px;
+                /* Adjust h2 font size for smaller screens */
+            }
+
+            .info-text p {
+                font-size: 14px;
+                /* Adjust paragraph font size for smaller screens */
+            }
+
+            .slider-navigation button {
+                display: block;
+                margin-top: -500px;
+                padding: 5px;
+
+            }
+
+    
+
+           
+
+            .input-group select {
+                appearance: none; 
+                padding-left: 10px; 
+            }
+            .input-group textarea {
+            height: 130px; 
+        }
+    
+
+            .container {
+                flex-direction: row;
+                /* Change back to horizontal for smaller screens */
+                width: 60%;
+                align-items: center;
+                margin-right: 40px;
+            }
+
+            .input-group {
+                flex-direction: column;
+                /* Change back to vertical for smaller screens */
+                width: 100%;
+            }
+
+
+            .input-group {
+                width: 100%;
+            }
+
+            .input-group {
+                width: 100%;
+            }
+
+            .rating-slider {
+                width: 100%;
+            }
+
+            .rating-option {
+                width: 80%;
+                padding: 3%;
+                height: 80%;
+                margin: 0.5%;
+
+            }
+
+            .left-section,
+            .right-section {
+                display: none;
+                /* Hide left and right images on smaller screens */
+            }
+
+        }
+    </style>
+    <!-- Add your other head elements (links, scripts, etc.) here -->
+    <title>Your Fitness App</title>
+    <script>
+        function submitFeedback() {
+
+            alert("Feedback submitted!");
+        }
+
+        function updateFeedback() {
+            var slider = document.getElementById("ratings");
+            var feedbackBox = document.getElementById("feedback-box");
+
+            var newPosition = (slider.value / 100) * slider.clientWidth - feedbackBox.clientWidth + 159;
+            feedbackBox.innerHTML = getFeedbackMessage(slider.value); // Change this line
+
+            feedbackBox.style.left = newPosition + "px";
+
+            document.getElementsByName("demo_rating")[0].value = slider.value;
+        }
+        function getFeedbackMessage(value) {
+            if (value <= 30) {
+                return "Strongly Dislike";
+            } else if (value <= 50) {
+                return "Dislike";
+            } else if (value <= 70) {
+                return "Neutral";
+            } else if (value <= 90) {
+                return "Like";
+            } else {
+                return "Love";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var ratingOptions = document.querySelectorAll(".rating-option");
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var futureProjectsOptions = document.querySelectorAll("[name='future_projects_rating']");
+
+                futureProjectsOptions.forEach(function (option) {
+                    option.addEventListener("click", function () {
+                        futureProjectsOptions.forEach(function (otherOption) {
+                            otherOption.classList.remove("selected");
+                        });
+                        option.classList.add("selected");
+                        var selectedValue = option.getAttribute("value");
+                        console.log("Selected value:", selectedValue);
+                    });
+                });
+            });
+        });
+
+        function fn_click(value) {
+            const data = document.getElementsByClassName("rating-option");
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].getAttribute('value') === value.toString()) {
+                    data[i].classList.add('selected');
+                } else {
+                    data[i].classList.remove('selected');
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container1">
+        <form method="post" action="{% url 'feedback' %}">
+            {% csrf_token %}
+            <header>
+                <div class="logo">
+                    <img src="https://cdn.pixabay.com/photo/2022/05/21/21/33/vitruvian-man-7212326_1280.png"
+                        alt="Your Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li class="home-link"><a href="/home">Home</a></li>
+                        <li><a href="/how_to_use">How to Use</a></li>
+                        <li><a href="/excercise">Select Exercise</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                    </ul>
+                </nav>
+                <img class="profile-logo" src="images/user (1).png" alt="Profile Logo">
+            </header>
+
+            <div class="container">
+                <div class="left-section">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 1">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 2">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 3">
+                </div>
+
+                <div class="input-group">
+                    <label for="ratings">What do you think of our demo?</label>
+                    <div class="rating-slider-container">
+                        <div class="rating-face">
+                            <img src="images/sad-face.png" alt="Sad Face">
+                        </div>
+                        <input type="range" id="ratings" name="demo_rating" min="0" max="100" step="1"
+                            oninput="updateFeedback()">
+                        <div class="rating-face">
+                            <img src="images/happiness.png" alt="Happy Face">
+                        </div>
+                        <div id="feedback-box" class="feedback-box">Neutral</div>
+                    </div>
+
+                    <label>Please select a subject</label>
+                    <select name="subject">
+                        <option name="subject" value="suggestions">Suggestions</option>
+                        <option value="compliment">Compliment</option>
+                        <option value="broken">Something Broken</option>
+                        <option value="question">I have a question</option>
+                    </select>
+
+                    <label for="feedback">What would you like to share with us?</label>
+                    <textarea id="feedback" name="feedback" rows="4" placeholder=""></textarea>
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email">
+
+                    <div class="rating-container">
+                        <label for="future-projects" class="ratings-label">How likely are you to work with us on future projects?</label>
+                        <div id="future-projects" class="rating-options">
+                            <div class="rating-option selected" data-text="Not very likely" value="1"
+                                onclick="fn_click(1)">1
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="2" onclick="fn_click(2)">2
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="3" onclick="fn_click(3)">3
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="4" onclick="fn_click(4)">4
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="5" onclick="fn_click(5)">5
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="6" onclick="fn_click(6)">6
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="7" onclick="fn_click(7)">7
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="8" onclick="fn_click(8)">8
+                            </div>
+                            <div class="rating-option" name="future_projects_rating" value="9" onclick="fn_click(9)">9
+                            </div>
+                            <div class="rating-option" data-text="Very likely" name="future_projects_rating" value="10"
+                                onclick="fn_click(10)">
+                                10</div>
+                        </div>
+
+                    </div>
+                </div>
+                
+
+
+                <div class="right-section">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 4">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 5">
+                    <img src="images/towfiqu-barbhuiya-0ZUoBtLw3y4-unsplash.jpg" alt="Image 6">
+                </div>
+            </div>
+            <div class="submit-button-container">
+                    <button type="submit" class="submit-button" onclick="submitFeedback()">Submit</button>
+                </div>
+    </div>
+    </form>
+
+</body>
+
+</html>
